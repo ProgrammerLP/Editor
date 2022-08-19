@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Editor.MainPage"
+             xmlns:local="clr-namespace:Editor"
+             Title="Overview">
+
+    <ContentPage.BindingContext>
+        <local:Vars/>
+    </ContentPage.BindingContext>
+
+    <Grid>
+
+        <ScrollView>
+            <ListView x:Name="LV_1" ItemsSource="{Binding List_1}" BackgroundColor="Transparent" ItemTapped="LV_1_ItemTapped" SelectionMode="None" >
+                <!--ItemSelected="LV_1_ItemSelected"-->
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type local:List_Content}">
+                        <ViewCell>
+                            <SwipeView Threshold="100" >
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Delete" BackgroundColor="Red" Command="{Binding Source={RelativeSource AncestorType={x:Type local:Vars}}, Path=DeleteCommand}" CommandParameter="{Binding title}" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid HeightRequest="50">
+                                    <Border StrokeShape="RoundRectangle 10">
+                                        <Grid BackgroundColor="Gray">
+                                            <Label Text="{Binding title}" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Margin="10,0" />
+                                            <Label Text="{Binding date}" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="10,0" />
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                            </SwipeView>
+                        </ViewCell>
+                        <!--<ViewCell>
+                        <Grid HeightRequest="50">
+                            <Border StrokeShape="RoundRectangle 10">
+                                <Grid BackgroundColor="Gray">
+                                    <Label Text="{Binding title}" TextColor="Black" VerticalOptions="Center" HorizontalOptions="Start" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" Margin="10,0" />
+                                    <Label Text="{Binding date}" TextColor="Black" VerticalOptions="Center" HorizontalOptions="End" HorizontalTextAlignment="End" VerticalTextAlignment="Center" Margin="10,0" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ViewCell>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+
+        <Border BackgroundColor="{AppThemeBinding Dark=#ff606060}" StrokeShape="RoundRectangle 20" WidthRequest="70" HeightRequest="40" VerticalOptions="End" Margin="0,0,0,30">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button BorderWidth="0" Text="+" BackgroundColor="Transparent" TextColor="White" FontSize="32" FontAttributes="Bold" Padding="0,0,0,5" x:Name="add_btn" Clicked="add_btn_Clicked" />
+                <ImageButton BorderWidth="0" IsEnabled="True" Aspect="Center" Source="Resources/Images/settings.png" Padding="0,0,0,5" x:Name="settings_btn" Grid.Column="1" Clicked="settings_btn_Clicked" />
+
+            </Grid>
+        </Border>
+    </Grid>
+
+</ContentPage>

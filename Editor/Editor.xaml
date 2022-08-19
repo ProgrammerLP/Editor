@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Editor.Editor"
+             Title="Editor">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Border Margin="10,5"  StrokeShape="RoundRectangle 10" BackgroundColor="#ff202020" StrokeThickness="0"  WidthRequest="350" HeightRequest="50" >
+                <Entry x:Name="title" Completed="title_Completed" Placeholder="Notitz Name" MaxLength="20" PlaceholderColor="#ff808080" FontSize="24" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+            </Border>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Editor x:Name="editor" Margin="5" Placeholder="Your Text here" Keyboard="Text" IsSpellCheckEnabled="True" CharacterSpacing="1" />
+            <Button Text="Save" CornerRadius="25" VerticalOptions="End" HorizontalOptions="End" Margin="30" x:Name="save_btn" Clicked="save_btn_Clicked" />
+            <Border StrokeShape="RoundRectangle 10" BackgroundColor="White" Stroke="#ff999999" IsVisible="false" x:Name="bdr_msg" HeightRequest="50" VerticalOptions="End" Margin="20,0,20,30" >
+                <Grid>
+                    <Entry IsReadOnly="True" x:Name="messager" FontSize="16" Margin="20,0" TextColor="Black" VerticalOptions="Center" FontAttributes="Bold" />
+                    <Button x:Name="close_btn" Clicked="close_btn_Clicked" Text="X" HorizontalOptions="End" FontAttributes="Bold" FontSize="16" />
+                </Grid>
+            </Border>
+        </Grid>
+        
+    </Grid>
+</ContentPage>
